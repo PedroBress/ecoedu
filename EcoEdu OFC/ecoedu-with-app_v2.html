@@ -1,0 +1,1870 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EcoEdu - Plataforma de educação ambiental e sustentabilidade. Aprenda, participe e transforme o mundo através de práticas sustentáveis.">
+    <meta name="keywords" content="sustentabilidade, educação ambiental, ecologia, meio ambiente, reciclagem">
+    <meta name="author" content="EcoEdu">
+    <title>EcoEdu - Sustentabilidade e Educação Ambiental</title>
+    
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Light Mode Colors */
+            --primary-green: #2d5a27;
+            --secondary-green: #4a7c59;
+            --light-green: #a8d8a8;
+            --accent-yellow: #f4d03f;
+            --earth-brown: #8b4513;
+            --sky-blue: #87ceeb;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --dark-gray: #333333;
+            --text-primary: #1a1a1a;
+            --text-secondary: #666666;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 8px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.15);
+            --border-color: #e0e0e0;
+            --card-bg: #ffffff;
+            --modal-overlay: rgba(0,0,0,0.5);
+        }
+
+        [data-theme="dark"] {
+            /* Dark Mode Colors */
+            --primary-green: #4a7c59;
+            --secondary-green: #5a8c69;
+            --light-green: #6da86d;
+            --accent-yellow: #ffd700;
+            --white: #1a1a1a;
+            --light-gray: #2a2a2a;
+            --dark-gray: #f0f0f0;
+            --text-primary: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2a2a2a;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.2);
+            --shadow-md: 0 4px 8px rgba(0,0,0,0.3);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.4);
+            --border-color: #3a3a3a;
+            --card-bg: #2d2d2d;
+            --modal-overlay: rgba(0,0,0,0.8);
+        }
+
+        /* Typography */
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+        h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
+        h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
+        p { 
+            margin-bottom: 1rem; 
+            color: var(--text-secondary);
+            font-size: clamp(0.95rem, 2vw, 1.1rem);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Skip to Content Link for Accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary-green);
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 100;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Header */
+        header {
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        header.scrolled {
+            box-shadow: var(--shadow-md);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--primary-green), var(--secondary-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: var(--text-primary);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            background: var(--primary-green);
+            color: white;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: var(--text-primary);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            padding: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary-green);
+            color: white;
+            transform: rotate(180deg);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 60px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            animation: bgMove 20s linear infinite;
+        }
+
+        @keyframes bgMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(60px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+        }
+
+        .hero-content h1 {
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            color: rgba(255,255,255,0.9);
+            animation: fadeInUp 0.8s ease 0.2s both;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent-yellow);
+            color: var(--primary-green);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(244,208,63,0.3);
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(244,208,63,0.5);
+        }
+
+        /* App Section */
+        .app-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .app-section {
+            background: linear-gradient(135deg, #1a2f1a, #2a4a2a);
+        }
+
+        .app-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .app-info {
+            animation: slideIn 0.8s ease;
+        }
+
+        .app-visual {
+            text-align: center;
+            animation: slideIn 0.8s ease 0.2s both;
+        }
+
+        .app-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            font-size: 4rem;
+            margin-bottom: 2rem;
+        }
+
+        .app-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-green);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .app-download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--primary-green);
+            color: white;
+            padding: 1.25rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
+            margin-top: 2rem;
+        }
+
+        .app-download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(45,90,39,0.3);
+            background: var(--secondary-green);
+        }
+
+        .google-play-badge {
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 5rem 0;
+            background: var(--bg-secondary);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .about-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .about-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        /* News Section */
+        .news-section {
+            padding: 5rem 0;
+            background: var(--bg-primary);
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .news-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .news-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* Garante que a imagem não ultrapasse a div */
+            font-size: 3rem;
+        }
+
+        .news-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-date {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-title {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .news-excerpt {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        .read-more {
+            color: var(--primary-green);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s ease;
+        }
+
+        .read-more:hover {
+            gap: 1rem;
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        /* Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-green);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--light-green), var(--secondary-green));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Interactive Elements */
+        .accordion {
+            margin-top: 3rem;
+        }
+
+        .accordion-item {
+            background: var(--card-bg);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .accordion-header {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background: var(--bg-secondary);
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 500px;
+        }
+
+        .accordion-body {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 0 1rem;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-section a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-green);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: var(--bg-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .social-link:hover {
+            background: var(--primary-green);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--modal-overlay);
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: var(--bg-primary);
+            margin: 2% auto;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            color: white;
+            padding: 2rem;
+            border-radius: 16px 16px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-close {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(255,255,255,0.3);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-green);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
+            z-index: 999;
+            border: none;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            background: var(--secondary-green);
+        }
+
+        /* Loading Indicator */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--primary-green);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 60px;
+                flex-direction: column;
+                background: var(--bg-primary);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: var(--shadow-lg);
+                padding: 2rem 0;
+                border-top: 1px solid var(--border-color);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .cards-grid, .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .app-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .app-features {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                min-height: 80vh;
+            }
+
+            .section {
+                padding: 3rem 0;
+            }
+
+            .modal-content {
+                margin: 5% auto;
+                width: 95%;
+            }
+        }
+
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--primary-green);
+            outline-offset: 2px;
+        }
+
+        /* Print Styles */
+        @media print {
+            header, footer, .back-to-top, .theme-toggle {
+                display: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+        }
+
+        /* Input Fields */
+        .input-field {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 3px rgba(45, 90, 39, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <a href="#main" class="skip-link">Pular para o conteúdo principal</a>
+    
+    <!-- Header -->
+    <header id="header">
+        <nav class="container">
+            <div class="logo">
+                <span>💚</span>
+                <span>EcoEdu</span>
+            </div>
+            
+            <button class="menu-toggle" aria-label="Menu" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link active">Início</a></li>
+                <li><a href="#sobre" class="nav-link">Sobre</a></li>
+                <li><a href="#app-herois" class="nav-link">App</a></li>
+                <li><a href="#noticias" class="nav-link">Notícias</a></li>
+                <li><a href="#curiosidades" class="nav-link">Curiosidades</a></li>
+                <li><a href="#dicas" class="nav-link">Dicas</a></li>
+                <li><a href="#acoes" class="nav-link">Ações</a></li>
+                <li><a href="#desenvolvedores" class="nav-link">Desenvolvedores</a></li>
+                <li>
+                    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema">
+                        <span id="themeIcon">🌙</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <main id="main">
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>🌱 Sustentabilidade e Educação</h1>
+                    <p>Transformando o mundo através da educação ambiental e práticas sustentáveis para um futuro melhor</p>
+                    <a href="#sobre" class="btn">Descubra Nossa Missão</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="sobre" class="about-section section">
+            <div class="container">
+                <h2 class="section-title">Sobre o EcoEdu</h2>
+                <p class="section-subtitle">Nossa missão é educar e inspirar ações sustentáveis para proteger nosso planeta</p>
+                
+                <div class="about-grid">
+                    <div class="about-card">
+                        <div class="about-icon">🎯</div>
+                        <h3>Nossa Missão</h3>
+                        <p>Promover a educação ambiental e conscientização sobre práticas sustentáveis, capacitando indivíduos e comunidades a tomar ações positivas pelo meio ambiente.</p>
+                    </div>
+                    
+                    <div class="about-card">
+                        <div class="about-icon">👁️</div>
+                        <h3>Nossa Visão</h3>
+                        <p>Ser referência em educação ambiental digital, criando uma rede de cidadãos conscientes e engajados na construção de um futuro sustentável.</p>
+                    </div>
+                    
+                    <div class="about-card">
+                        <div class="about-icon">💎</div>
+                        <h3>Nossos Valores</h3>
+                        <p>Sustentabilidade, Educação, Inovação, Colaboração, Responsabilidade Social e Ambiental, Transparência e Impacto Positivo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- App Heróis da Sustentabilidade Section -->
+        <section id="app-herois" class="app-section section">
+            <div class="container">
+                <h2 class="section-title">🦸‍♀️ Heróis da Sustentabilidade 🦸‍♂️</h2>
+                <p class="section-subtitle">Torne-se um verdadeiro herói do meio ambiente! Baixe nosso app educativo e aprenda sustentabilidade de forma divertida e interativa.</p>
+                
+                <div class="app-content">
+                    <div class="app-info">
+                        <h3>Aventure-se no Mundo da Sustentabilidade!</h3>
+                        <p>O app Heróis da Sustentabilidade transforma o aprendizado ambiental em uma experiência única e envolvente para todas as idades.</p>
+                        
+                        <div class="app-features">
+                            <div class="feature-item">
+                                <div class="feature-icon">🎮</div>
+                                <span>Jogos educativos interativos</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">🏆</div>
+                                <span>Desafios e conquistas</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">📚</div>
+                                <span>Conteúdo educacional completo</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">🌍</div>
+                                <span>Impacto ambiental real</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">👨‍👩‍👧‍👦</div>
+                                <span>Para toda a família</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">📱</div>
+                                <span>Interface intuitiva</span>
+                            </div>
+                        </div>
+                        
+                        <a href="https://play.google.com/store/apps/details?id=br.edu.unisagrado.heroi_sustentabilidade" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="app-download-btn">
+                            <span>📲</span>
+                            <span>Download Heróis da Sustentabilidade</span>
+                        </a>
+                        
+                        <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);">
+                            Disponível gratuitamente no Google Play Store
+                        </p>
+                    </div>
+                    
+                    <div class="app-visual">
+                        <div class="app-icons">
+                            <span>👩‍🌾</span>
+                            <span>🌱</span>
+                            <span>👨‍🌾</span>
+                        </div>
+                        <h3>Junte-se a milhares de heróis!</h3>
+                        <p>Cada ação conta. Cada aprendizado importa. Juntos, podemos criar um futuro mais sustentável.</p>
+                        
+                        <div style="background: var(--card-bg); padding: 2rem; border-radius: 16px; margin-top: 2rem; box-shadow: var(--shadow-md);">
+                            <h4 style="color: var(--primary-green); margin-bottom: 1rem;">✨ Recursos Especiais</h4>
+                            <ul style="text-align: left; color: var(--text-secondary); list-style: none;">
+                                <li style="margin-bottom: 0.5rem;">✅ Quiz ambiental com níveis progressivos</li>
+                                <li style="margin-bottom: 0.5rem;">✅ Missões diárias de sustentabilidade</li>
+                                <li style="margin-bottom: 0.5rem;">✅ Calculadora de pegada de carbono</li>
+                                <li style="margin-bottom: 0.5rem;">✅ Dicas práticas personalizadas</li>
+                                <li>✅ Comunidade de eco-heróis</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- News Section -->
+        <section id="noticias" class="news-section section">
+            <div class="container">
+                <h2 class="section-title">Notícias Recentes</h2>
+                <p class="section-subtitle">Fique por dentro das últimas novidades em sustentabilidade</p>
+                
+                <div class="news-grid">
+                    <article class="news-card">
+                        <div class="news-image">
+                            <img src="https://i0.wp.com/oeco.org.br/wp-content/uploads/2025/10/Marsh_deer_-_Ibera_Wetlands_26937795696.jpg?resize=1536%2C1024&ssl=1" alt="Pessoas fazendo compras em um supermercado" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="news-content">
+                            <time class="news-date">20 de Outubro, 2025</time>
+                            <h3 class="news-title">O Pantanal e outras zonas úmidas são heroínas climáticas esquecidas</h3>
+                            <p class="news-excerpt">As áreas úmidas mundiais abrigam grande biodiversidade, purificam a água, regulam enchentes...</p>
+                            <a href="https://oeco.org.br/reportagens/o-pantanal-e-outras-zonas-umidas-sao-heroinas-climaticas-esquecidas/" target="_blank" class="read-more">Ler mais →</a>
+                        </div>
+                    </article>
+                    
+                    <article class="news-card">
+                        <div class="news-image">
+                            <img src="https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2025/06/original_ww2126976.jpg?w=849&h=477&crop=0" alt="Pessoas fazendo compras em um supermercado" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="news-content">
+                            <time class="news-date">06 de Junho, 2025</time>
+                            <h3 class="news-title">Dia Mundial do Meio Ambiente 2025 destaca luta contra poluição plástica</h3>
+                            <p class="news-excerpt">Na data reconhecida para aumentar a conscientização e promover ações em prol do meio ambiente, a ONU convoca cidadãos contra a poluição plástica...</p>
+                            <a href="https://www.cnnbrasil.com.br/tecnologia/dia-mundial-do-meio-ambiente-2025-destaca-luta-contra-poluicao-plastica/" target="_blank" class="read-more">Ler mais →</a>
+                        </div>
+                    </article>
+                    
+                    <article class="news-card">
+                        <div class="news-image">
+                            <img src="https://s2-g1.glbimg.com/q1r1995qfvtRRJtzuD5ogZ695nU=/0x0:894x502/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2025/S/X/FfHNrYT1uG7q3MzULNQA/2009-jn-sustentabilidade.jpg" alt="Pessoas fazendo compras em um supermercado" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="news-content">
+                            <time class="news-date">15 de Fevereiro, 2023</time>
+                            <h3 class="news-title">Mais da metade dos brasileiros leva a sustentabilidade</h3>
+                            <p class="news-excerpt">Uma pesquisa encomendada pela Agência Brasileira de Desenvolvimento Industrial identificou que práticas sustentáveis são critério...</p>
+                            <a href="https://g1.globo.com/jornal-nacional/noticia/2025/09/20/mais-da-metade-dos-brasileiros-leva-a-sustentabilidade-em-conta-ao-fazer-compras-diz-pesquisa.ghtml" target="_blank" class="read-more">Ler mais →</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Curiosidades Section -->
+        <section id="curiosidades" class="section">
+            <div class="container">
+                <h2 class="section-title">Curiosidades Sustentáveis</h2>
+                <p class="section-subtitle">Descubra fatos interessantes sobre meio ambiente e sustentabilidade</p>
+                
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-icon">♻️</div>
+                        <h3>Reciclagem de Papel</h3>
+                        <p>A reciclagem de uma tonelada de papel pode salvar 17 árvores e economizar 26.500 litros de água.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-icon">🌞</div>
+                        <h3>Energia Solar</h3>
+                        <p>A energia que a Terra recebe do Sol em uma hora é suficiente para suprir as necessidades energéticas do planeta por um ano inteiro.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-icon">🚰</div>
+                        <h3>Economia de Água</h3>
+                        <p>Um banho de 15 minutos gasta em média 135 litros de água, enquanto um banho de 5 minutos gasta apenas 45 litros.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-icon">🌳</div>
+                        <h3>Importância das Árvores</h3>
+                        <p>Uma árvore adulta pode absorver até 22 kg de CO2 por ano e liberar oxigênio suficiente para duas pessoas.</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">🚲</div>
+                        <h3>Alteração de Locomoção</h3>
+                        <p>Trocar 10 km de carro por bicicleta salva cerca de 1 kg de CO₂ por viagem.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-icon">🔋</div>
+                        <h3>Energia Limpa</h3>
+                        <p>A maior parte da energia gasta por aparelhos está no modo standby. Desligue na tomada.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Dicas Section -->
+        <section id="dicas" class="section">
+            <div class="container">
+                <h2 class="section-title">Dicas Práticas</h2>
+                <p class="section-subtitle">Pequenas ações que fazem grande diferença no dia a dia</p>
+                
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>💡 Economia de Energia</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <p><strong>Dicas para reduzir o consumo de energia:</strong></p>
+                                <ul>
+                                    <li>Troque lâmpadas incandescentes por LED</li>
+                                    <li>Desligue aparelhos da tomada quando não estiver usando</li>
+                                    <li>Use luz natural sempre que possível</li>
+                                    <li>Mantenha a geladeira longe de fontes de calor</li>
+                                    <li>Prefira eletrodomésticos com selo Procel A</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>🚰 Redução do Consumo de Água</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <p><strong>Como economizar água em casa:</strong></p>
+                                <ul>
+                                    <li>Feche a torneira ao escovar os dentes</li>
+                                    <li>Tome banhos mais curtos</li>
+                                    <li>Conserte vazamentos rapidamente</li>
+                                    <li>Reaproveite água da chuva</li>
+                                    <li>Use vassoura em vez de mangueira para limpar calçadas</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>🛍️ Consumo Consciente</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <p><strong>Faça escolhas mais sustentáveis:</strong></p>
+                                <ul>
+                                    <li>Prefira produtos com menos embalagem</li>
+                                    <li>Use sacolas reutilizáveis</li>
+                                    <li>Compre de produtores locais</li>
+                                    <li>Evite desperdício de alimentos</li>
+                                    <li>Escolha produtos duráveis em vez de descartáveis</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ações Section -->
+        <section id="acoes" class="section">
+            <div class="container">
+                <h2 class="section-title">Ações Transformadoras</h2>
+                <p class="section-subtitle">Participe de iniciativas que fazem a diferença</p>
+                
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-icon">🌿</div>
+                        <h3>Plante uma Árvore</h3>
+                        <p>Participe de programas de reflorestamento ou plante árvores nativas em sua comunidade.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-icon">🚮</div>
+                        <h3>Mutirão de Limpeza</h3>
+                        <p>Organize ou participe de mutirões para limpar praias, parques e espaços públicos.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-icon">📚</div>
+                        <h3>Educação Ambiental</h3>
+                        <p>Compartilhe conhecimento sobre sustentabilidade em escolas e comunidades.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-icon">🤝</div>
+                        <h3>Voluntariado</h3>
+                        <p>Engaje-se em projetos de organizações ambientais como voluntário.</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">⚡</div>
+                        <h3>Eficiência Energética</h3>
+                        <p>Dicas de como economizar energia em casa e incentivar o uso de energia solar</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">💚</div>
+                        <h3>Comunidade Sustentável</h3>
+                        <p>Divulgar em redes sociais campanhas locais de limpeza, reciclagem ou plantio.</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- Ações Section -->
+        <section id="desenvolvedores" class="section">
+            <div class="container">
+                <h2 class="section-title">Desenvolvedores</h2>
+                <p class="section-subtitle">Conheça um pouco mais sobre nós.</p>
+                
+                <div class="cards-grid">
+                    <article class="news-card">
+                        <div class="news-image">
+                            <img src="https://media.licdn.com/dms/image/v2/D4E03AQGvi9T4ht3aNQ/profile-displayphoto-crop_800_800/B4EZm7_MC1KYAI-/0/1759795529510?e=1762387200&v=beta&t=zCVilHwmndwvpaA1lM4e-4rnQ5OIo1H_5crVw4K17Ak" alt="Pedro" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="news-content">
+                            <h3 class="news-title">Pedro Guermandi Bressan</h3>
+                            <p class="news-excerpt">Tenho 20 anos e atualmente curso o segundo ano de Ciência da Computação, desenvolvendo habilidades nas áreas de tecnologia, programação e inovação digital.</p>
+                            <a href="https://www.linkedin.com/in/pedro-guermandi-bressan-4224462b9/" target="_blank" class="read-more">Linkedin →</a>
+                        </div>
+                    </article>
+                    
+                    <article class="news-card">
+                        <div class="news-image">
+                            <img src="https://media.licdn.com/dms/image/v2/D4E03AQH8XNEzsgVfoA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1675985114138?e=1762387200&v=beta&t=V-CwBvFvLPAVsH82-s2_4XWVbEauoSWp9Iz-WhQVB9Q" alt="Luiz" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="news-content">
+                            <h3 class="news-title">Luiz Guilherme Tiritan Martins</h3>
+                            <p class="news-excerpt">Tenho 31 anos e estou cursando o segundo ano de Ciência da Computação, área pela qual sou apaixonado e onde busco constantemente aprender e criar novas soluções tecnológicas.</p>
+                            <a href="https://www.linkedin.com/in/luiz-martins-b03465b1/" target="_blank" class="read-more">Linkedin →</a>
+                        </div>
+                    </article>
+                    
+                    <article class="news-card">
+                        <div class="news-image">
+                            <img src="https://media.licdn.com/dms/image/v2/D5603AQEKYCHDemZ6BA/profile-displayphoto-crop_800_800/B56Zm7vyWsJoAI-/0/1759791492538?e=1762387200&v=beta&t=H-xkYqlKHvmEOzUDLxHj_7k6D5wZBlcxE27v692yAeU" alt="Gustavo" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="news-content">
+                            <h3 class="news-title">Gustavo Messa Corbe</h3>
+                            <p class="news-excerpt">Tenho 20 anos e estou no segundo ano do curso de Ciência da Computação, sempre em busca de aprender mais sobre tecnologia e programação.</p>
+                            <a href="https://www.linkedin.com/in/gustavo-corbe-490a452b3/" target="_blank" class="read-more">Linkedin →</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Eco Quiz Section -->
+        <section id="eco-quiz" class="section" style="background: var(--bg-secondary); padding: 5rem 0;">
+            <div class="container">
+                <h2 class="section-title">🌱 Quiz de Sustentabilidade</h2>
+                <p class="section-subtitle">Teste seus conhecimentos sobre meio ambiente e sustentabilidade</p>
+                
+                <div id="quiz-container" style="max-width: 800px; margin: 0 auto;">
+                    <div id="quiz-start" style="text-align: center; background: var(--card-bg); padding: 3rem; border-radius: 16px; box-shadow: var(--shadow-md);">
+                        <h3 style="color: var(--primary-green); margin-bottom: 1rem;">Pronto para o desafio?</h3>
+                        <p style="margin-bottom: 2rem; color: var(--text-secondary);">Responda 5 perguntas sobre sustentabilidade e descubra seu nível de conhecimento ambiental!</p>
+                        <button onclick="startQuiz()" class="btn" style="background: var(--primary-green); color: white; border: none; cursor: pointer;">
+                            Começar Quiz
+                        </button>
+                    </div>
+                    
+                    <div id="quiz-questions" style="display: none;">
+                        <div id="question-container" style="background: var(--card-bg); padding: 2rem; border-radius: 16px; margin-bottom: 2rem; box-shadow: var(--shadow-md);">
+                            <h3 id="question-text" style="color: var(--text-primary); margin-bottom: 1.5rem;"></h3>
+                            <div id="options-container" style="display: flex; flex-direction: column; gap: 1rem;"></div>
+                        </div>
+                        
+                        <div id="quiz-progress" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                            <span id="progress-text" style="color: var(--text-secondary); font-weight: 500;"></span>
+                            <div style="background: var(--border-color); border-radius: 10px; height: 8px; flex: 1; max-width: 300px; margin: 0 1rem;">
+                                <div id="progress-bar" style="background: var(--primary-green); height: 100%; border-radius: 10px; width: 0%; transition: width 0.3s ease;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="quiz-results" style="display: none; text-align: center; background: var(--card-bg); padding: 3rem; border-radius: 16px; box-shadow: var(--shadow-md);">
+                        <h3 id="result-title" style="color: var(--primary-green); margin-bottom: 1rem;"></h3>
+                        <div id="result-score" style="font-size: 3rem; font-weight: bold; color: var(--secondary-green); margin: 1rem 0;"></div>
+                        <p id="result-message" style="margin-bottom: 2rem; color: var(--text-secondary);"></p>
+                        <button onclick="restartQuiz()" class="btn" style="background: var(--primary-green); color: white; border: none; cursor: pointer; margin-right: 1rem;">
+                            Fazer Novamente
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Eco Calculator Section -->
+        <section id="eco-calculator" class="section" style="padding: 5rem 0;">
+            <div class="container">
+                <h2 class="section-title">🧮 Calculadora de Sustentabilidade</h2>
+                <p class="section-subtitle">Calcule seu consumo mensal e descubra como economizar recursos</p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; max-width: 1000px; margin: 0 auto;">
+                    <div style="background: var(--card-bg); padding: 2rem; border-radius: 16px; box-shadow: var(--shadow-md);">
+                        <h3 style="color: var(--primary-green); margin-bottom: 1.5rem;">Seu Consumo Mensal</h3>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 500;">
+                                💡 Energia Elétrica (kWh)
+                            </label>
+                            <input type="number" id="energy-input" class="input-field" placeholder="Ex: 200" min="0" step="10">
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 500;">
+                                💧 Água (m³)
+                            </label>
+                            <input type="number" id="water-input" class="input-field" placeholder="Ex: 15" min="0" step="1">
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 500;">
+                                🚗 Combustível (litros)
+                            </label>
+                            <input type="number" id="fuel-input" class="input-field" placeholder="Ex: 80" min="0" step="5">
+                        </div>
+                        
+                        <div style="margin-bottom: 2rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 500;">
+                                🗑️ Resíduos (kg)
+                            </label>
+                            <input type="number" id="waste-input" class="input-field" placeholder="Ex: 20" min="0" step="1">
+                        </div>
+                        
+                        <button onclick="calculateSavings()" class="btn" style="width: 100%; background: var(--primary-green); color: white; border: none; cursor: pointer;">
+                            Calcular Economia
+                        </button>
+                    </div>
+                    
+
+                    <div style="background: var(--card-bg); padding: 2rem; border-radius: 16px; box-shadow: var(--shadow-md);">
+                        <h3 style="color: var(--primary-green); margin-bottom: 1.5rem;">Sua Economia Potencial</h3>
+                        
+                        <div id="results-container" style="display: none;">
+                            <div style="margin-bottom: 2rem;">
+                                <h4 style="color: var(--text-secondary); margin-bottom: 1rem;">💰 Economia Mensal Estimada</h4>
+                                <div id="savings-result" style="font-size: 2rem; font-weight: bold; color: var(--secondary-green);"></div>
+                            </div>
+                            
+                            <div style="margin-bottom: 2rem;">
+                                <h4 style="color: var(--text-secondary); margin-bottom: 1rem;">📊 Impacto Ambiental</h4>
+                                <div id="impact-result" style="color: var(--text-primary); line-height: 1.6;"></div>
+                            </div>
+                            
+                            <div>
+                                <h4 style="color: var(--text-secondary); margin-bottom: 1rem;">💡 Dicas Personalizadas</h4>
+                                <div id="tips-result" style="color: var(--text-primary); line-height: 1.6;"></div>
+                            </div>
+                        </div>
+                        
+                        <div id="no-results" style="text-align: center; padding: 2rem;">
+                            <div style="font-size: 4rem; margin-bottom: 1rem;">📊</div>
+                            <p style="color: var(--text-secondary);">Preencha os dados ao lado para calcular sua economia potencial e impacto ambiental.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>EcoEdu</h4>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">Educação ambiental para um futuro sustentável.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#app-herois">App</a></li>
+                        <li><a href="#noticias">Notícias</a></li>
+                        <li><a href="#curiosidades">Curiosidades</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Recursos</h4>
+                    <ul>
+                        <li><a href="#dicas">Dicas Práticas</a></li>
+                        <li><a href="#acoes">Ações</a></li>
+                        <li><a href="#eco-quiz">Quiz</a></li>
+                        <li><a href="#eco-calculator">Calculadora</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><a href="#">📞 +55 14 99858-0608</a></li>
+                        <li><a href="#">📍 Bauru, Brasil</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 EcoEdu. Todos os direitos reservados. Desenvolvido por alunos do Centro Universitário Sagrado Coração</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" onclick="scrollToTop()" aria-label="Voltar ao topo">
+        ↑
+    </button>
+
+    <script>
+        // Theme Management
+        function getTheme() {
+            return localStorage.getItem('theme') || 'light';
+        }
+
+        function setTheme(theme) {
+            localStorage.setItem('theme', theme);
+            document.documentElement.setAttribute('data-theme', theme);
+            updateThemeIcon(theme);
+        }
+
+        function toggleTheme() {
+            const currentTheme = getTheme();
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            setTheme(newTheme);
+        }
+
+        function updateThemeIcon(theme) {
+            const themeIcon = document.getElementById('themeIcon');
+            if (themeIcon) {
+                themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
+            }
+        }
+
+        // Initialize theme
+        setTheme(getTheme());
+
+        // Scroll Management
+        function handleScroll() {
+            const header = document.getElementById('header');
+            const backToTop = document.querySelector('.back-to-top');
+            
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+                backToTop.classList.add('show');
+            } else {
+                header.classList.remove('scrolled');
+                backToTop.classList.remove('show');
+            }
+            
+            // Section visibility
+            document.querySelectorAll('.section').forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                if (sectionTop < window.innerHeight * 0.75) {
+                    section.classList.add('visible');
+                }
+            });
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Navigation
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navMenu = document.getElementById('navMenu');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Accordion
+        function toggleAccordion(header) {
+            const item = header.parentElement;
+            const isActive = item.classList.contains('active');
+            
+            // Close all accordion items
+            document.querySelectorAll('.accordion-item').forEach(accordionItem => {
+                accordionItem.classList.remove('active');
+            });
+            
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
+
+        // Modal Management
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'block';
+                setTimeout(() => modal.classList.add('show'), 10);
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('show');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }, 300);
+            }
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (event) => {
+            document.querySelectorAll('.modal').forEach(modal => {
+                if (event.target === modal) {
+                    closeModal(modal.id);
+                }
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initial scroll handling
+            handleScroll();
+            
+            // Add loading state to buttons
+            document.querySelectorAll('.btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    if (this.getAttribute('href') === '#') {
+                        e.preventDefault();
+                        this.classList.add('loading');
+                        setTimeout(() => this.classList.remove('loading'), 2000);
+                    }
+                });
+            });
+            
+            // Add intersection observer for sections
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+
+        // Scroll event listener
+        window.addEventListener('scroll', handleScroll);
+
+        // Quiz Data and Logic
+        const quizQuestions = [
+            {
+                question: "Qual destas é a forma mais eficaz de reduzir o consumo de energia em casa?",
+                options: [
+                    "Deixar os aparelhos em standby",
+                    "Usar lâmpadas LED e desligar aparelhos da tomada",
+                    "Manter a geladeira sempre aberta",
+                    "Usar ar condicionado 24 horas por dia"
+                ],
+                correct: 1
+            },
+            {
+                question: "Qual é o benefício principal da reciclagem?",
+                options: [
+                    "Aumentar a quantidade de lixo nos aterros",
+                    "Economizar recursos naturais e reduzir poluição",
+                    "Criar mais empregos para coletores de lixo",
+                    "Deixar as ruas mais coloridas"
+                ],
+                correct: 1
+            },
+            {
+                question: "O que é pegada de carbono?",
+                options: [
+                    "A marca que deixamos no chão",
+                    "A quantidade total de gases de efeito estufa emitidos por uma pessoa ou organização",
+                    "O rastro que os carros deixam na estrada",
+                    "Um tipo de poluição visual"
+                ],
+                correct: 1
+            },
+            {
+                question: "Qual destas práticas ajuda a economizar água?",
+                options: [
+                    "Tomar banhos longos",
+                    "Lavar calçada com mangueira",
+                    "Fechar a torneira ao escovar os dentes",
+                    "Deixar a torneira pingando"
+                ],
+                correct: 2
+            },
+            {
+                question: "O que significa desenvolvimento sustentável?",
+                options: [
+                    "Desenvolvimento que atende às necessidades do presente sem comprometer as gerações futuras",
+                    "Crescimento econômico a qualquer custo",
+                    "Desenvolvimento apenas para países ricos",
+                    "Expansão urbana sem planejamento"
+                ],
+                correct: 0
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function startQuiz() {
+            document.getElementById('quiz-start').style.display = 'none';
+            document.getElementById('quiz-questions').style.display = 'block';
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const question = quizQuestions[currentQuestion];
+            document.getElementById('question-text').textContent = question.question;
+            
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.className = 'btn';
+                button.style.cssText = 'text-align: left; padding: 1rem; background: var(--bg-secondary); color: var(--text-primary); border: 1px solid var(--border-color); cursor: pointer; transition: all 0.3s ease;';
+                button.onmouseover = function() { this.style.background = 'var(--primary-green)'; this.style.color = 'white'; };
+                button.onmouseout = function() { this.style.background = 'var(--bg-secondary)'; this.style.color = 'var(--text-primary)'; };
+                button.onclick = () => selectAnswer(index);
+                optionsContainer.appendChild(button);
+            });
+            
+            updateProgress();
+        }
+
+        function selectAnswer(selectedIndex) {
+            const question = quizQuestions[currentQuestion];
+            if (selectedIndex === question.correct) {
+                score++;
+            }
+            
+            currentQuestion++;
+            
+            if (currentQuestion < quizQuestions.length) {
+                showQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / quizQuestions.length) * 100;
+            document.getElementById('progress-bar').style.width = `${progress}%`;
+            document.getElementById('progress-text').textContent = `Pergunta ${currentQuestion + 1} de ${quizQuestions.length}`;
+        }
+
+        function showResults() {
+            document.getElementById('quiz-questions').style.display = 'none';
+            document.getElementById('quiz-results').style.display = 'block';
+            
+            const percentage = (score / quizQuestions.length) * 100;
+            document.getElementById('result-score').textContent = `${score}/${quizQuestions.length}`;
+            
+            let title, message;
+            if (percentage >= 80) {
+                title = '🎉 Excelente!';
+                message = 'Você é um verdadeiro especialista em sustentabilidade! Continue compartilhando seu conhecimento.';
+            } else if (percentage >= 60) {
+                title = '👍 Muito Bom!';
+                message = 'Você tem um bom conhecimento sobre sustentabilidade. Continue aprendendo e praticando!';
+            } else if (percentage >= 40) {
+                title = '💡 Bom Começo!';
+                message = 'Você está no caminho certo. Continue aprendendo sobre sustentabilidade!';
+            } else {
+                title = '🌱 Vamos Aprender Juntos!';
+                message = 'Não desanime! A sustentabilidade é uma jornada de aprendizado contínuo.';
+            }
+            
+            document.getElementById('result-title').textContent = title;
+            document.getElementById('result-message').textContent = message;
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            document.getElementById('quiz-results').style.display = 'none';
+            document.getElementById('quiz-questions').style.display = 'block';
+            showQuestion();
+        }
+
+        function shareResults() {
+            const text = `🌱 Acabei de fazer o Quiz de Sustentabilidade do EcoEdu e acertei ${score} de ${quizQuestions.length} perguntas! Teste seus conhecimentos você também!`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Quiz de Sustentabilidade - EcoEdu',
+                    text: text,
+                    url: window.location.href
+                });
+            } else {
+                // Fallback: copy to clipboard
+                navigator.clipboard.writeText(text + ' ' + window.location.href).then(() => {
+                    alert('Resultado copiado para a área de transferência! Compartilhe com seus amigos.');
+                });
+            }
+        }
+
+        // Calculator Logic
+        function calculateSavings() {
+            const energy = parseFloat(document.getElementById('energy-input').value) || 0;
+            const water = parseFloat(document.getElementById('water-input').value) || 0;
+            const fuel = parseFloat(document.getElementById('fuel-input').value) || 0;
+            const waste = parseFloat(document.getElementById('waste-input').value) || 0;
+            
+            // Calculate potential savings (simplified calculation)
+            const energySavings = energy * 0.15 * 0.75; // 15% reduction at R$ 0.75/kWh
+            const waterSavings = water * 0.20 * 5.00; // 20% reduction at R$ 5.00/m³
+            const fuelSavings = fuel * 0.10 * 5.50; // 10% reduction at R$ 5.50/liter
+            const wasteSavings = waste * 0.25 * 2.00; // 25% reduction in waste handling costs
+            
+            const totalSavings = energySavings + waterSavings + fuelSavings + wasteSavings;
+            
+            // Calculate environmental impact
+            const co2Reduction = (energy * 0.15 * 0.5) + (fuel * 0.10 * 2.3); // kg CO2
+            const waterSaved = water * 0.20 * 1000; // liters
+            const treesEquivalent = co2Reduction / 22; // trees needed to absorb CO2
+            
+            // Display results
+            document.getElementById('savings-result').textContent = `R$ ${totalSavings.toFixed(2)}/mês`;
+            
+            document.getElementById('impact-result').innerHTML = `
+                <div style="margin-bottom: 0.5rem;">🌳 Equivale a ${treesEquivalent.toFixed(1)} árvores plantadas</div>
+                <div style="margin-bottom: 0.5rem;">💧 ${waterSaved.toFixed(0)} litros de água economizados</div>
+                <div>🌍 ${co2Reduction.toFixed(1)} kg de CO₂ reduzidos</div>
+            `;
+            
+            // Generate personalized tips
+            let tips = [];
+            if (energy > 200) tips.push("💡 Considere trocar suas lâmpadas por LED e desligar aparelhos da tomada");
+            if (water > 15) tips.push("💧 Instante arejadores nas torneiras e prefira banhos mais curtos");
+            if (fuel > 50) tips.push("🚗 Combine trajetos e considere transporte público ou bicicleta");
+            if (waste > 15) tips.push("🗑️ Separe melhor seus resíduos para reciclagem e compostagem");
+            
+            if (tips.length === 0) {
+                tips.push("🌟 Continue com suas boas práticas sustentáveis!");
+            }
+            
+            document.getElementById('tips-result').innerHTML = tips.map(tip => `<div style="margin-bottom: 0.5rem;">${tip}</div>`).join('');
+            
+            // Show results
+            document.getElementById('no-results').style.display = 'none';
+            document.getElementById('results-container').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
